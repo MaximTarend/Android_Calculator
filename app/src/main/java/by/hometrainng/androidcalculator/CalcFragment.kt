@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import by.hometrainng.androidcalculator.databinding.CalculatorLayoutBinding
+import by.hometrainng.androidcalculator.databinding.FragmentCalculatorBinding
 import by.hometrainng.androidcalculator.service.CalcService
 import by.hometrainng.androidcalculator.service.ExpressionChecker
+import by.hometrainng.androidcalculator.utils.OperationalList
 
 class CalcFragment(
     private val calcService: CalcService,
     private val expressionChecker: ExpressionChecker
     ): Fragment() {
 
-    private var _binding: CalculatorLayoutBinding? = null
+    private var _binding: FragmentCalculatorBinding? = null
     private val binding get() = requireNotNull(_binding)
 
     override fun onCreateView(
@@ -23,7 +24,7 @@ class CalcFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return CalculatorLayoutBinding.inflate(inflater, container, false)
+        return FragmentCalculatorBinding.inflate(inflater, container, false)
             .also { _binding = it }
             .root
     }
@@ -85,7 +86,9 @@ class CalcFragment(
             }*/
             buttonEquals.setOnClickListener {
                 if (expressionChecker.checkExpression(textToCalc)) {
-                    textView.text = calcService.calc(textView.text.toString())
+                    val result = calcService.calc(textView.text.toString())
+                    textView.text = result
+                    OperationalList.addElement(textToCalc.append("=").append(result).toString())
                     textToCalc = StringBuilder("")
                 }
                 else {
@@ -93,6 +96,9 @@ class CalcFragment(
                     textView.text = textToCalc
                     Toast.makeText(root.context, "Wrong expression", Toast.LENGTH_SHORT).show()
                 }
+            }
+            buttonHistory.setOnClickListener {
+                pushFragment()
             }
         }
     }

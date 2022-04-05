@@ -5,6 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.8564356435643564" />
         <entry key="app/src/main/res/layout/calculator_layout.xml" value="0.2598958333333333" />
+        <entry key="app/src/main/res/layout/fragment_calculator.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/item_expression.xml" value="0.25" />
       </map>
     </option>
   </component>

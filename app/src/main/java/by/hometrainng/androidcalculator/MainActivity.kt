@@ -2,6 +2,7 @@ package by.hometrainng.androidcalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import by.hometrainng.androidcalculator.service.CalcService
 import by.hometrainng.androidcalculator.service.ExpressionChecker
 
@@ -10,9 +11,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        addFragment(CalcFragment(CalcService(), ExpressionChecker()))
+    }
+
+    fun addFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.main_container, CalcFragment(CalcService(), ExpressionChecker()))
+            .replace(R.id.main_container, fragment)
+            .addToBackStack(null)
             .commit()
     }
+}
+
+fun Fragment.pushFragment() {
+
+    (requireActivity() as MainActivity).addFragment(ListFragment())
+
 }
