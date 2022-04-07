@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import by.hometrainng.androidcalculator.service.CalcService
 import by.hometrainng.androidcalculator.service.ExpressionChecker
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        addFragment(CalcFragment(CalcService(), ExpressionChecker()))
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container, CalcFragment(CalcService(), ExpressionChecker()))
+                .commit()
+        }
     }
 
     fun addFragment(fragment: Fragment) {
@@ -23,8 +27,8 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-fun Fragment.pushFragment() {
+fun Fragment.pushFragment(fragment: Fragment) {
 
-    (requireActivity() as MainActivity).addFragment(ListFragment())
+    (requireActivity() as MainActivity).addFragment(fragment)
 
 }

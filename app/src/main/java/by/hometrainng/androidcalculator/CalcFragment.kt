@@ -98,7 +98,7 @@ class CalcFragment(
                 }
             }
             buttonHistory.setOnClickListener {
-                pushFragment()
+                pushFragment(ListFragment())
             }
         }
     }
