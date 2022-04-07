@@ -1,6 +1,6 @@
 package by.hometrainng.androidcalculator.utils
 
-object OperationalList {
+object OperationalList { // TODO реализовать передачу через bundle
 
     private var list = mutableListOf<String>()
 
