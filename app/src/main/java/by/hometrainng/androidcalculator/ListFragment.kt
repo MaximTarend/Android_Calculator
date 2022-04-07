@@ -31,7 +31,7 @@ class ListFragment: Fragment() {
         with(binding) {
             listOfOperations.layoutManager = LinearLayoutManager(view.context)
 
-            listOfOperations.adapter = ItemsAdapter(OperationalList.list)
+            listOfOperations.adapter = ItemsAdapter(OperationalList.getList())
         }
     }
 

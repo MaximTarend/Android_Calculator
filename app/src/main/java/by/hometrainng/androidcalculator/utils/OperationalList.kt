@@ -1,12 +1,15 @@
 package by.hometrainng.androidcalculator.utils
 
-class OperationalList {
-    companion object {
+object OperationalList {
 
-        var list = mutableListOf<String>()
+    private var list = mutableListOf<String>()
 
-        fun addElement(item: String) {
-            list.add(item)
-        }
+    fun addElement(item: String) {
+        list.add(item)
     }
+
+    fun getList() : List<String> {
+        return list
+    }
+
 }
